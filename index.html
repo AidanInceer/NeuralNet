@@ -1,13 +1,30 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>my-react-app</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Neural Network Visualizer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="app-container">
+    <header class="app-header">
+      <h1>Neural Network Visualizer</h1>
+    </header>
+
+    <main class="main-content">
+      <div class="network-container" id="network-container">
+        <!-- SVG will be injected here -->
+      </div>
+
+      <div class="controls-container" id="controls-container">
+        <!-- Controls will be injected here -->
+      </div>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+
 </html>
