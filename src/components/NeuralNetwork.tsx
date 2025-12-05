@@ -1,22 +1,37 @@
 import React, { useMemo } from 'react';
 
-const NeuralNetwork = ({ layers }) => {
+interface NeuralNetworkProps {
+    layers: number[];
+}
+
+interface Node {
+    x: number;
+    y: number;
+    id: string;
+}
+
+interface Connection {
+    x1: number;
+    y1: number;
+    x2: number;
+    y2: number;
+    id: string;
+}
+
+const NeuralNetwork: React.FC<NeuralNetworkProps> = ({ layers }) => {
     const width = 800;
     const height = 500;
     const padding = 50;
 
     const networkData = useMemo(() => {
-        const nodes = [];
+        const nodes: Node[][] = [];
 
         // Calculate node positions
         const layerSpacingX = layers.length > 1 ? (width - 2 * padding) / (layers.length - 1) : 0;
 
         layers.forEach((nodeCount, layerIndex) => {
-            const layerNodes = [];
+            const layerNodes: Node[] = [];
             const layerSpacingY = nodeCount > 1 ? (height - 2 * padding) / (nodeCount - 1) : 0;
-
-            // If single node, center it vertically
-            const startY = nodeCount === 1 ? height / 2 : padding;
 
             for (let i = 0; i < nodeCount; i++) {
                 layerNodes.push({
@@ -28,7 +43,7 @@ const NeuralNetwork = ({ layers }) => {
             nodes.push(layerNodes);
         });
 
-        const connections = [];
+        const connections: Connection[] = [];
         for (let l = 0; l < nodes.length - 1; l++) {
             const currentLayer = nodes[l];
             const nextLayer = nodes[l + 1];
@@ -65,7 +80,7 @@ const NeuralNetwork = ({ layers }) => {
                 ))}
 
                 {/* Nodes */}
-                {networkData.nodes.map((layer, lIndex) =>
+                {networkData.nodes.map((layer) =>
                     layer.map(node => (
                         <circle
                             key={node.id}
